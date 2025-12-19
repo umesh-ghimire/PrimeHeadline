@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->integer('position');
-            $table->boolean('visible')->default(true);
+            $table->boolean('visible')->default(true); // Change 'true' to true (boolean)
+
             $table->longText('meta_keywords');
             $table->longText('meta_description');
             $table->timestamps();

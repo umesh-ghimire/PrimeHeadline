@@ -22,15 +22,36 @@
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ($categories as $index => $category)
+
                           <tr>
                             <td>
-                              1
+                              {{ $category->position}}
                             </td>
-                            <td>Society</td>
-                            <td>Society</td>
-                            <td>true</td>
-                            <td><a href="#" class="btn btn-primary">Detail</a></td>
+                            <td>{{ $category->title }}</td>
+                            <td>{{ $category->slug }}</td>
+                            <td>
+                              @if ($category->visible == true)
+                              <span class="badge bg-success">Visible</span>
+                              @else
+                              <span class="badge bg-danger">Hidden</span>
+                                  
+                              @endif
+                            </td>
+                            <td class="d-flex">
+                              <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
+
+                               @csrf
+                            @method('delete')
+
+                            <button class="btn btn-sm btn-danger ml-2">Delete</button>
+                            </form>
+                           
+                            </td>
                           </tr>
+                              
+                          @endforeach
                         </tbody>
                       </table>
                     </div>
